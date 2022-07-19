@@ -1,9 +1,6 @@
 
-Messages:
+Lang:
   discord: 'Put your discord link here!'
-  on-fly:  '&2You can now fly!'
-  fly-disabled: '&4You can no longer fly!'
   no-permission: '&4You do not have permission to execute this command!'
-  no-console: '&4Only players can execute this command!'
+  sender_not_player: '&4Only players can execute this command!'
   prefix: '&2[&6SH+&2]&7'
-  mute: 'I havent configured this yet :c BTW this can be configured in the config.yml file (&a&lcolor code supported!&f)'
