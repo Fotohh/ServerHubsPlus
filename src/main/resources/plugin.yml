@@ -6,47 +6,13 @@ authors: [Xaxis_Playz]
 description: This is packed with all the essentials you need for your plugin!
 website: https://www.youtube.com/channel/UCqsW72sUu2UgLnURN_NAl-A?view_as=subscriber
 commands:
-  suicide:
-      description: This command kills you instantly (be careful when using this command)
-      usage: /<command>
-      aliases: [die, d]
   heal:
-      description: This command heals you instantly
-      usage: /<command>
-      aliases: [hl]
-  godmode:
-    description: You are invulnerable with this enabled
-    usage: /<command>
-    aliases: [g, gm]
-  feed:
-    description: Fill your food bar to full
-    usage: /<command>
-    aliases: [f, fd]
-  discord:
-    description: Discord link is listed when this command is executed
-    usage: /<command>
-    aliases: [ds]
-  fly:
-    description: Use this command to fly
-    usage: /<command>
-  gui:
-    description: Use this command to fly
-    usage: /<command>
-  Phelp:
-    description: Help me please...
-    usage: /<command>
-  shReload:
-    description: Reloads the custom config file.
-    usage: /<command>
-  punishGUI:
-    description: Open the gui for banning players
-    usage: /<command>
-    aliases: [bgu, bGUI]
-  randomTP:
-    description: Randomly teleport somewhere
-    usage: /<command>
-    aliases: [rtp]
-  SHvanish:
-    description: Hides yourself from other players (even from ops (I think))
-    usage: /<command>
-    aliases: [shv, SHvh]
+    description: 'Heal yourself'
+  sethub:
+    description: 'set hub'
+    aliases:
+      - setlobby
+  hub:
+    aliases:
+      - lobby
+    description: 'Teleport to hub'

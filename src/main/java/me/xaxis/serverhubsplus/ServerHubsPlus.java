@@ -1,11 +1,14 @@
 package me.xaxis.serverhubsplus;
 
+import me.xaxis.serverhubsplus.commands.Heal;
 import me.xaxis.serverhubsplus.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class ServerHubsPlus extends JavaPlugin{
+
+    Heal heal = new Heal(this);
 
     @Override
     public void onEnable() {
@@ -15,10 +18,6 @@ public class ServerHubsPlus extends JavaPlugin{
         Bukkit.getConsoleSender().sendMessage(Utils.chat("              &7&lMade By &6&rXaxis          "));
         Bukkit.getConsoleSender().sendMessage(Utils.chat("                                     "));
         Bukkit.getConsoleSender().sendMessage(Utils.chat("&a&l&m-------------------------------------"));
-
-
-
-
     }
 
     @Override

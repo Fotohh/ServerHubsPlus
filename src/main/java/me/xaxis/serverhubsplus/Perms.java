@@ -2,19 +2,20 @@ package me.xaxis.serverhubsplus;
 
 public enum Perms {
 
-    SHP_HEAL;
+    SHP_HEAL("ServerHubsPlus.commands.heal"),
+    SHP_HEAL_OTHERS("ServerHubsPlus.commands.heal.others"),
+    SET_HUB("ServerHubsPlus.commands.sethub");
 
-    public String string(){
+    public String ToString(){
 
-        switch (this){
-            case SHP_HEAL -> {
-                return "ServerHubsPlus.commands.heal";
-            }
-        }
+        return permission;
 
+    }
 
-        return "";
+    private final String permission;
 
+    Perms(String permission){
+        this.permission = permission;
     }
 
 }

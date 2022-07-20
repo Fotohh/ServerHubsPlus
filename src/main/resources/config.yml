@@ -1,6 +1,10 @@
 
 Lang:
   discord: 'Put your discord link here!'
-  no-permission: '&4You do not have permission to execute this command!'
+  no_permission: '&4You do not have permission to execute this command!'
   sender_not_player: '&4Only players can execute this command!'
-  prefix: '&2[&6SH+&2]&7'
+  prefix: '&2[&6SH+&2]&7&r ' #Remember to add a space after if you ever modify the prefix!
+  invalid_player: '&4That player is either offline or does not exist!'
+  string_not_int: '&4You must enter a integer not a string!'
+
+Locations: {}
