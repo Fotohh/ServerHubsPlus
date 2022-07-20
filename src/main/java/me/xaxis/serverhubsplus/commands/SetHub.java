@@ -42,7 +42,7 @@ public class SetHub implements CommandExecutor {
 
                 instance.saveConfig();
 
-                player.sendMessage(Utils.chat("&aSuccessfully set hub location!"));
+                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&aSuccessfully set hub location!"));
 
             } else if(args.length == 3){
 
@@ -60,17 +60,18 @@ public class SetHub implements CommandExecutor {
 
                 instance.saveConfig();
 
-                player.sendMessage(Utils.chat("&aSuccessfully set hub location!"));
+                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&aSuccessfully set hub location!"));
 
-            } else if(args.length == 2 || args.length > 3){
+            } else {
 
-                player.sendMessage(Utils.chat("&4Incorrect Usage! /sethub x y z"));
+                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&4Incorrect Usage! /sethub or /sethub x y z"));
+                return true;
 
             }
 
         }else{
 
-            sender.sendMessage(Utils.chat(Lang.SENDER_NOT_PLAYER.toString(instance)));
+            sender.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+Lang.SENDER_NOT_PLAYER.toString(instance)));
 
             return true;
 

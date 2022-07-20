@@ -5,7 +5,15 @@ public enum Perms {
     SHP_HEAL("ServerHubsPlus.commands.heal"),
     SHP_HEAL_OTHERS("ServerHubsPlus.commands.heal.others"),
     SET_HUB("ServerHubsPlus.commands.sethub"),
-    VANISH("ServerHubsPlus.commands.vanish");
+    TPHERE("ServerHubsPlus.commands.tphere"),
+    TP2P("ServerHubsPlus.commands.tp2p"),
+    SUICIDE("ServerHubsPlus.commands.suicide"),
+    FLY("ServerHubsPlus.commands.fly"),
+    FLY_OTHERS("ServerHubsPlus.commands.fly.others"),
+    FEED("ServerHubsPlus.commands.feed"),
+    FEED_OTHERS("ServerHubsPlus.commands.feed.others"),
+    GODMODE("ServerHubsPlus.commands.godmode"),
+    GODMODE_OTHERS("ServerHubsPlus.commands.godmode.others");
 
     public String ToString(){
 

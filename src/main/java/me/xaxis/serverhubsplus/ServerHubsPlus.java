@@ -1,8 +1,6 @@
 package me.xaxis.serverhubsplus;
 
-import me.xaxis.serverhubsplus.commands.Heal;
-import me.xaxis.serverhubsplus.commands.Hub;
-import me.xaxis.serverhubsplus.commands.SetHub;
+import me.xaxis.serverhubsplus.commands.*;
 import me.xaxis.serverhubsplus.listeners.OnJoin;
 import me.xaxis.serverhubsplus.utils.Utils;
 import org.bstats.bukkit.Metrics;
@@ -21,14 +19,20 @@ public class ServerHubsPlus extends JavaPlugin{
         Bukkit.getConsoleSender().sendMessage(Utils.chat("                                     "));
         Bukkit.getConsoleSender().sendMessage(Utils.chat("&a&l&m-------------------------------------"));
 
-
+        saveDefaultConfig();
 
         //Instantiate classes
-        Metrics metrics = new Metrics(this, 15846);
-        Heal heal = new Heal(this);
-        SetHub setHub = new SetHub(this);
-        Hub hub = new Hub(this);
-        OnJoin onJoin = new OnJoin(this);
+        new Metrics(this, 15846);
+        new Heal(this);
+        new SetHub(this);
+        new Hub(this);
+        new OnJoin(this);
+        new Tphere(this);
+        new Tp2p(this);
+        new Suicide(this);
+        new Fly(this);
+        new GodMode(this);
+
     }
 
     @Override

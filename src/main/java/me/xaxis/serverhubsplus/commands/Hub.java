@@ -17,6 +17,7 @@ public class Hub implements CommandExecutor {
 
     public Hub(ServerHubsPlus instance){
         this.instance = instance;
+        instance.getCommand("hub").setExecutor(this);
     }
 
     @Override
@@ -28,9 +29,21 @@ public class Hub implements CommandExecutor {
 
             Location location = instance.getConfig().getLocation("Locations.Hub");
 
+            if(location == null){
+
+                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&4Huh... that's odd... no hub location was set!"));
+
+                return true;
+
+            }
+
             player.teleport(location);
 
+            if(location.getWorld() == null) return true;
+
             location.getWorld().spawnEntity(location, EntityType.FIREWORK);
+
+            player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&aSuccessfully teleported to hub!"));
 
 
         }else{

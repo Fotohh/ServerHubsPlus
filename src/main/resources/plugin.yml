@@ -1,10 +1,10 @@
 name: ServerHubsPlus
 version: ${project.version}
-main: me.xaxis_playz.shp.serverhubsplus.ServerHubsPlus
-api-version: 1.14
-authors: [Xaxis_Playz]
+main: me.xaxis.serverhubsplus.ServerHubsPlus
+api-version: 1.19
+authors:
+  - Xaxis
 description: This is packed with all the essentials you need for your plugin!
-website: https://www.youtube.com/channel/UCqsW72sUu2UgLnURN_NAl-A?view_as=subscriber
 commands:
   heal:
     description: 'Heal yourself'
@@ -16,7 +16,14 @@ commands:
     aliases:
       - lobby
     description: 'Teleport to hub'
-  vanish:
-    aliases:
-      - v
-    description: 'Vanish yourself or others'
+  tphere:
+    description: 'Teleport a player to your location'
+  tp2p:
+    description: 'tp to a player'
+  suicide:
+    description: 'kill yourself'
+  fly:
+    description: 'enable/disable flying'
+  godmode:
+    description: 'make yourself invulnerable'
+

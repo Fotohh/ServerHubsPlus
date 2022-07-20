@@ -9,7 +9,8 @@ public enum Lang {
     SENDER_NOT_PLAYER("Lang.sender_not_player"),
     PREFIX("Lang.prefix"),
     INVALID_PLAYER("Lang.invalid_player"),
-    STRING_NOT_INT("Lang.string_not_int");
+    STRING_NOT_INT("Lang.string_not_int"),
+    CUSTOM_JOIN_MESSAGE("Lang.custom_join_message");
 
     public String toString(@NotNull ServerHubsPlus instance){
 

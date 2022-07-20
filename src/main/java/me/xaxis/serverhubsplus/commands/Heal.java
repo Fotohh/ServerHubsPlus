@@ -39,6 +39,8 @@ public class Heal implements CommandExecutor {
 
                     other.setHealth(maxHealth);
 
+                    other.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +"&aYour health was reset!"));
+
                 }
 
             }else if(args.length == 0){
@@ -49,16 +51,18 @@ public class Heal implements CommandExecutor {
 
                     player.setHealth(maxHealth);
 
-                    player.sendMessage(Lang.PREFIX.toString(instance) + "&aSuccessfully reset your health!");
+                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&aSuccessfully reset your health!"));
 
                 }
 
+            } else{
+                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&4Invalid Usage! /heal or /heal <player>"));
             }
 
 
         }else{
 
-            sender.sendMessage(Utils.chat(instance.getConfig().getString(Lang.SENDER_NOT_PLAYER.toString(instance))));
+            sender.sendMessage(Utils.chat(instance.getConfig().getString(Lang.PREFIX.toString(instance)+Lang.SENDER_NOT_PLAYER.toString(instance))));
 
         }
 
@@ -70,7 +74,7 @@ public class Heal implements CommandExecutor {
 
         if(!player.isOnline()){
 
-            player.sendMessage(Utils.chat(Lang.INVALID_PLAYER.toString(instance)));
+            player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+Lang.INVALID_PLAYER.toString(instance)));
 
             return false;
 
@@ -78,7 +82,7 @@ public class Heal implements CommandExecutor {
 
         if (!player.hasPermission(perms.ToString())) {
 
-            player.sendMessage(Lang.NO_PERMISSION.toString(instance));
+            player.sendMessage(Lang.PREFIX.toString(instance)+Lang.NO_PERMISSION.toString(instance));
 
             return false;
 
@@ -94,7 +98,7 @@ public class Heal implements CommandExecutor {
                 player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + String.format("&6%s &4is already at max health!", player.getDisplayName())));
             }
 
-            return true;
+            return false;
 
         }
 
