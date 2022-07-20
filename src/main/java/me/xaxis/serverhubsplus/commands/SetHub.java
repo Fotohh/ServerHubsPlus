@@ -18,6 +18,7 @@ public class SetHub implements CommandExecutor {
 
     public SetHub(ServerHubsPlus instance){
         this.instance = instance;
+        instance.getCommand("sethub").setExecutor(this);
     }
 
     @Override

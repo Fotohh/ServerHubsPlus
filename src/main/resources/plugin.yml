@@ -16,3 +16,7 @@ commands:
     aliases:
       - lobby
     description: 'Teleport to hub'
+  vanish:
+    aliases:
+      - v
+    description: 'Vanish yourself or others'

@@ -1,4 +1,8 @@
 
+Options:
+  Lobby:
+    auto_teleport_on_join: false
+
 Lang:
   discord: 'Put your discord link here!'
   no_permission: '&4You do not have permission to execute this command!'

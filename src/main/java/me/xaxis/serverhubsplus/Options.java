@@ -1,2 +1,29 @@
-package me.xaxis.serverhubsplus;public class Options {
+package me.xaxis.serverhubsplus;
+
+import org.jetbrains.annotations.NotNull;
+
+public enum Options {
+
+    AUTO_TELEPORT_ON_JOIN("Options.Lobby.auto_teleport_on_join");
+
+    public String toString(@NotNull ServerHubsPlus instance){
+
+        return instance.getConfig().getString(path);
+
+    }
+
+    public Boolean toBoolean(@NotNull ServerHubsPlus instance){
+
+        return instance.getConfig().getBoolean(path);
+
+    }
+
+    private final String path;
+
+    Options(String path){
+
+        this.path = path;
+
+    }
+
 }

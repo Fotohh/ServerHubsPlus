@@ -4,7 +4,8 @@ public enum Perms {
 
     SHP_HEAL("ServerHubsPlus.commands.heal"),
     SHP_HEAL_OTHERS("ServerHubsPlus.commands.heal.others"),
-    SET_HUB("ServerHubsPlus.commands.sethub");
+    SET_HUB("ServerHubsPlus.commands.sethub"),
+    VANISH("ServerHubsPlus.commands.vanish");
 
     public String ToString(){
 
