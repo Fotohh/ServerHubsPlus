@@ -1,13 +1,12 @@
 package me.xaxis.serverhubsplus.listeners;
 
-import me.xaxis.serverhubsplus.Lang;
-import me.xaxis.serverhubsplus.Options;
-import me.xaxis.serverhubsplus.ServerHubsPlus;
+import me.xaxis.serverhubsplus.*;
 import me.xaxis.serverhubsplus.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.jetbrains.annotations.NotNull;
@@ -61,18 +60,35 @@ public class OnJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
 
-        if(!Options.AUTO_TELEPORT_ON_JOIN.toBoolean(instance)) return;
+        if(Options.AUTO_TELEPORT_ON_JOIN.toBoolean(instance)) {
 
-        Location location = instance.getConfig().getLocation("Locations.Hub");
+            Location location = instance.getConfig().getLocation("Locations.Hub");
 
-        if(location == null) return;
+            if (location == null) return;
 
-        Player player = e.getPlayer();
+            Player player = e.getPlayer();
 
-        player.teleport(location);
+            player.teleport(location);
 
-        location.getWorld().spawnEntity(location, EntityType.FIREWORK);
+            location.getWorld().spawnEntity(location, EntityType.FIREWORK);
 
+        }
+
+        if(Options.Vanish.toBoolean(instance)) {
+
+            Player other = e.getPlayer();
+
+            if(other.hasPermission(Perms.VANISH_SEE.ToString())) return;
+
+            for(Player player : VanishManager.getVanishList()){
+
+                VanishManager manager = VanishManager.getPlayerClass(player.getUniqueId());
+
+                manager.hideFromPlayer(other);
+
+            }
+
+        }
 
     }
 

@@ -13,7 +13,11 @@ public enum Perms {
     FEED("ServerHubsPlus.commands.feed"),
     FEED_OTHERS("ServerHubsPlus.commands.feed.others"),
     GODMODE("ServerHubsPlus.commands.godmode"),
-    GODMODE_OTHERS("ServerHubsPlus.commands.godmode.others");
+    GODMODE_OTHERS("ServerHubsPlus.commands.godmode.others"),
+    VANISH("ServerHubsPlus.commands.vanish"),
+    VANISH_OTHERS("ServerHubsPlus.commands.vanish.others"),
+    VANISH_SEE("ServerHubsPlus.commands.vanish.see")
+    ;
 
     public String ToString(){
 

@@ -33,6 +33,10 @@ public class ServerHubsPlus extends JavaPlugin{
         new Fly(this);
         new GodMode(this);
 
+        if(Options.Vanish.toBoolean(this)) {
+            new Vanish(this);
+        }
+
     }
 
     @Override

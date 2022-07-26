@@ -4,6 +4,8 @@ Options:
     auto_teleport_on_join: false
   OnJoin:
     custom_join_messages: true
+  Vanish:
+    enabled: true
 
 Lang:
   discord: 'Put your discord link here!'

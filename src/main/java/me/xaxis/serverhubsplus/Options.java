@@ -5,7 +5,9 @@ import org.jetbrains.annotations.NotNull;
 public enum Options {
 
     AUTO_TELEPORT_ON_JOIN("Options.Lobby.auto_teleport_on_join"),
-    custom_join_messages("Options.OnJoin.custom_join_messages");
+    custom_join_messages("Options.OnJoin.custom_join_messages"),
+    Vanish("Options.Vanish.enabled")
+    ;
 
     public String toString(@NotNull ServerHubsPlus instance){
 

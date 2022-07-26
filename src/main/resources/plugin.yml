@@ -26,4 +26,6 @@ commands:
     description: 'enable/disable flying'
   godmode:
     description: 'make yourself invulnerable'
+  vanish:
+    description: 'make yourself invisible to certain players'
 
