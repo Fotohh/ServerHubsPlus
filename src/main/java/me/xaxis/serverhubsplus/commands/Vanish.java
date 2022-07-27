@@ -86,8 +86,10 @@ public class Vanish implements CommandExecutor {
 
         if (vanishManager.playerVanished()) {
             vanishManager.showPlayer();
+            player.sendMessage(Utils.chat(Lang.UNVANISHED.toString(instance)));
         } else {
             vanishManager.hidePlayer();
+            player.sendMessage(Utils.chat(Lang.VANISHED.toString(instance)));
         }
 
     }

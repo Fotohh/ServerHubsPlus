@@ -10,7 +10,10 @@ public enum Lang {
     PREFIX("Lang.prefix"),
     INVALID_PLAYER("Lang.invalid_player"),
     STRING_NOT_INT("Lang.string_not_int"),
-    CUSTOM_JOIN_MESSAGE("Lang.custom_join_message");
+    CUSTOM_JOIN_MESSAGE("Lang.custom_join_message"),
+    VANISHED("Lang.vanished"),
+    UNVANISHED("Lang.unvanished")
+    ;
 
     public String toString(@NotNull ServerHubsPlus instance){
 

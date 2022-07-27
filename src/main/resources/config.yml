@@ -15,5 +15,7 @@ Lang:
   invalid_player: '&4That player is either offline or does not exist!'
   string_not_int: '&4You must enter a integer not a string!'
   custom_join_message: '&6Welcome to the server %p!' # %p is replaced with the players display name
+  vanished: '&6You are now &avanished'
+  unvanished: '&6You are now &cunvanished'
 
 Locations: {}
