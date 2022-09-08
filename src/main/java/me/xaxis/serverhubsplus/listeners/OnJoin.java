@@ -6,7 +6,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.jetbrains.annotations.NotNull;
@@ -31,11 +30,13 @@ public class OnJoin implements Listener {
 
         StringBuilder msg = new StringBuilder(message);
 
-        for(int i = 0; i < message.toCharArray().length; i++){
+        int len = message.toCharArray().length;
+
+        for(int i = 0; i < len; i++){
 
             char c = message.charAt(i);
 
-            if(c == '%' && message.charAt(i +1) == 'p'){
+            if(c == '%' && message.charAt(i + 1) == 'p'){
 
                 msg.deleteCharAt(i + 1);
 

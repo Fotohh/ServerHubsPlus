@@ -38,7 +38,7 @@ public class UpdateChecker {
             try {
                 versionStream = new URL(API_URL).openStream();
             } catch (IOException e) {
-                plugin.getServer().getConsoleSender().sendMessage(Utils.chat("Error whilst checking for update: &4Failed to open URL stream."));
+                plugin.getServer().getConsoleSender().sendMessage(Utils.chat("&4Error whilst checking for update: failed to open URL stream."));
                 return;
             }
 
