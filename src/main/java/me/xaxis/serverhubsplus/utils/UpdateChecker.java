@@ -22,7 +22,7 @@ public class UpdateChecker {
 
         this.plugin = plugin;
 
-        if(Options.UPDATE_CHECKER_ENABLED.toBoolean(plugin)){
+        if(!Options.UPDATE_CHECKER_ENABLED.toBoolean(plugin)){
             return;
         }
 
