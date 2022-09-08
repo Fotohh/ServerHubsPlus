@@ -6,8 +6,8 @@
 
     <groupId>me.xaxis</groupId>
     <artifactId>serverhubsplus</artifactId>
-    <version>1.0</version>
     <packaging>jar</packaging>
+    <version>0</version>
 
     <name>ServerHubsPlus</name>
 
