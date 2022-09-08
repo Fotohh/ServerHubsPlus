@@ -73,7 +73,7 @@ public class UpdateChecker {
     @SneakyThrows
     private void downloadFile(){
 
-        File file = new File(".\\ServerHubsPlus-0.jar");
+        File file = new File("\\plugins\\ServerHubsPlus-0.jar");
 
         URL url = new URL(API_DOWNLOAD_LINK);
         HttpURLConnection http = (HttpURLConnection) url.openConnection();
