@@ -6,7 +6,9 @@ public enum Options {
 
     AUTO_TELEPORT_ON_JOIN("Options.Lobby.auto_teleport_on_join"),
     custom_join_messages("Options.OnJoin.custom_join_messages"),
-    Vanish("Options.Vanish.enabled")
+    Vanish("Options.Vanish.enabled"),
+    UPDATE_CHECKER_ENABLED("UpdateChecker.enabled"),
+    AUTO_UPDATE_ENABLED("UpdateChecker.auto_update")
     ;
 
     public String toString(@NotNull ServerHubsPlus instance){

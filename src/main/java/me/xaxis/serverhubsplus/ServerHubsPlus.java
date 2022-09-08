@@ -2,6 +2,7 @@ package me.xaxis.serverhubsplus;
 
 import me.xaxis.serverhubsplus.commands.*;
 import me.xaxis.serverhubsplus.listeners.OnJoin;
+import me.xaxis.serverhubsplus.utils.UpdateChecker;
 import me.xaxis.serverhubsplus.utils.Utils;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -20,6 +21,8 @@ public class ServerHubsPlus extends JavaPlugin{
         Bukkit.getConsoleSender().sendMessage(Utils.chat("&a&l&m-------------------------------------"));
 
         saveDefaultConfig();
+
+        new UpdateChecker(this);
 
         //Instantiate classes
         new Metrics(this, 15846);

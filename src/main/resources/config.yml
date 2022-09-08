@@ -1,4 +1,8 @@
 
+UpdateChecker:
+  enabled: true
+  auto_update: true
+
 Options:
   Lobby:
     auto_teleport_on_join: false
