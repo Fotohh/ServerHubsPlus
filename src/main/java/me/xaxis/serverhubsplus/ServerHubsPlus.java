@@ -1,6 +1,7 @@
 package me.xaxis.serverhubsplus;
 
 import me.xaxis.serverhubsplus.commands.*;
+import me.xaxis.serverhubsplus.listeners.OnInventoryClick;
 import me.xaxis.serverhubsplus.listeners.OnJoin;
 import me.xaxis.serverhubsplus.utils.UpdateChecker;
 import me.xaxis.serverhubsplus.utils.Utils;
@@ -35,6 +36,9 @@ public class ServerHubsPlus extends JavaPlugin{
         new Suicide(this);
         new Fly(this);
         new GodMode(this);
+        new Discord(this);
+        new InvSee(this);
+        new OnInventoryClick(this);
 
         if(Options.Vanish.toBoolean(this)) {
             new Vanish(this);

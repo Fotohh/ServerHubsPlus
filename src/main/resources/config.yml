@@ -13,6 +13,7 @@ Options:
 
 Lang:
   discord: 'Put your discord link here!'
+  not_enough_args: '&4You have not provided the correct amount of arguments!'
   no_permission: '&4You do not have permission to execute this command!'
   sender_not_player: '&4Only players can execute this command!'
   prefix: '&2[&6SH+&2]&7&r ' #Remember to add a space after if you ever modify the prefix! To remove the prefix simply set it to ''

@@ -16,7 +16,8 @@ public enum Perms {
     GODMODE_OTHERS("ServerHubsPlus.commands.godmode.others"),
     VANISH("ServerHubsPlus.commands.vanish"),
     VANISH_OTHERS("ServerHubsPlus.commands.vanish.others"),
-    VANISH_SEE("ServerHubsPlus.commands.vanish.see")
+    VANISH_SEE("ServerHubsPlus.commands.vanish.see"),
+    INVSEE("ServerHubsPlus.commands.invsee")
     ;
 
     public String ToString(){

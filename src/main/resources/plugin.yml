@@ -28,4 +28,8 @@ commands:
     description: 'make yourself invulnerable'
   vanish:
     description: 'make yourself invisible to certain players'
+  discord:
+    description: 'Your discord link'
+  invsee:
+    description: 'Look into another players inventory and remove items'
 

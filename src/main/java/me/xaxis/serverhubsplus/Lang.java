@@ -12,7 +12,8 @@ public enum Lang {
     STRING_NOT_INT("Lang.string_not_int"),
     CUSTOM_JOIN_MESSAGE("Lang.custom_join_message"),
     VANISHED("Lang.vanished"),
-    UNVANISHED("Lang.unvanished")
+    UNVANISHED("Lang.unvanished"),
+    NOT_ENOUGH_ARGS("Lang.not_enough_args")
     ;
 
     public String toString(@NotNull ServerHubsPlus instance){
