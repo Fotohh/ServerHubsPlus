@@ -6,12 +6,14 @@ import me.xaxis.serverhubsplus.ServerHubsPlus;
 import me.xaxis.serverhubsplus.managers.InvSeeManager;
 import me.xaxis.serverhubsplus.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class InvSee implements CommandExecutor {
@@ -62,13 +64,13 @@ public class InvSee implements CommandExecutor {
 
     private void openInventory(@NotNull Player target, @NotNull Player player){
 
-        Inventory i = Bukkit.createInventory(null, InventoryType.CHEST, player.getName());
+        Inventory i = Bukkit.createInventory(target, target.getInventory().getStorageContents().length, player.getName());
 
-        i.setContents(target.getInventory().getContents());
+        i.setContents(target.getInventory().getStorageContents());
 
         player.openInventory(i);
 
-        InvSeeManager.addPlayer(target);
+        InvSeeManager invSeeManager = new InvSeeManager(player, target);
 
     }
 }
