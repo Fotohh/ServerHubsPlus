@@ -12,16 +12,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class Fly implements CommandExecutor {
+public class Fly extends Utils implements CommandExecutor {
 
     private final ServerHubsPlus instance;
     private final LangConfig lang;
 
     public Fly(@NotNull ServerHubsPlus instance){
+        super(instance);
 
         this.instance = instance;
-        instance.getCommand("fly").setExecutor(this);
         this.lang = instance.getLangConfig();
+        instance.getCommand("fly").setExecutor(this);
 
     }
 
@@ -35,11 +36,8 @@ public class Fly implements CommandExecutor {
                 if(args.length == 0){
 
                     if(!player.hasPermission(Perms.FLY.get())){
-
-                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.NO_PERMISSION)));
-
+                        message(player, Lang.NO_PERMISSION);
                         return true;
-
                     }
 
                     if(player.getAllowFlight()){
@@ -48,7 +46,7 @@ public class Fly implements CommandExecutor {
 
                         player.setFlying(false);
 
-                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_DISABLED)));
+                        message(player,Lang.FLY_DISABLED);
 
                         return true;
 
@@ -56,7 +54,7 @@ public class Fly implements CommandExecutor {
 
                     player.setAllowFlight(true);
 
-                    player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_ENABLED)));
+                    message(player,Lang.FLY_ENABLED);
 
                     return true;
 
@@ -64,7 +62,7 @@ public class Fly implements CommandExecutor {
 
                     if(!player.hasPermission(Perms.FLY_OTHERS.get())){
 
-                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.NO_PERMISSION)));
+                        message(player,Lang.NO_PERMISSION);
 
                         return true;
 
@@ -74,7 +72,7 @@ public class Fly implements CommandExecutor {
 
                     if(target == null || !target.isOnline()){
 
-                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.INVALID_PLAYER)));
+                        message(player,Lang.INVALID_PLAYER);
 
                         return true;
 
@@ -82,28 +80,28 @@ public class Fly implements CommandExecutor {
 
                     if(target.getAllowFlight()){
 
-                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_DISABLED_OTHER, target.getDisplayName())));
+                        message(player, Lang.FLY_DISABLED_OTHER, target.getDisplayName());
 
                         target.setAllowFlight(false);
 
                         target.setFlying(false);
 
-                        target.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_DISABLED)));
+                        message(target,Lang.FLY_DISABLED);
 
                         return true;
                     }
 
-                    player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_ENABLED_OTHER, target.getDisplayName())));
+                    message(player, Lang.FLY_ENABLED_OTHER, target.getDisplayName());
 
                     target.setAllowFlight(true);
 
-                    target.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_ENABLED)));
+                    message(target, Lang.FLY_ENABLED);
 
                     return true;
 
                 }else{
 
-                    player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) +lang.getString(Lang.FLY_INCORRECT_USAGE)));
+                    message(player,Lang.FLY_INCORRECT_USAGE);
 
                     return true;
 
@@ -111,7 +109,7 @@ public class Fly implements CommandExecutor {
 
         }else{
 
-            sender.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.SENDER_NOT_PLAYER)));
+            message(sender,Lang.SENDER_NOT_PLAYER);
 
             return true;
 

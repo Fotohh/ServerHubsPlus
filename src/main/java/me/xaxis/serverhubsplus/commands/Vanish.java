@@ -47,7 +47,7 @@ public class Vanish extends Utils implements CommandExecutor {
 
                     vanishPlayer(target);
 
-                    message(player, Lang.VANISHED_OTHER);
+                    message(player, Lang.VANISHED_OTHER, target.getDisplayName());
 
                     return true;
 
@@ -75,7 +75,7 @@ public class Vanish extends Utils implements CommandExecutor {
             vanishManager = VanishManager.getPlayerClass(player.getUniqueId());
         }
 
-        if (vanishManager.playerVanished()) {
+        if (!vanishManager.playerVanished()) {
             vanishManager.showPlayer();
             message(player, Lang.UNVANISHED);
         } else {

@@ -58,7 +58,6 @@ public class UpdateChecker {
     private void update(){
 
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, ()->{
-            try (InputStream versionStream = new URL(API_URL).openStream(); Scanner ignored = new Scanner(versionStream)) {
 
                 double webVersion = getWebVersion();
 
@@ -86,9 +85,6 @@ public class UpdateChecker {
                 plugin.getLogger().log(Level.FINE,"Downloading file...");
                 downloadFile();
                 plugin.getLogger().log(Level.FINE,"Installation Complete! \nPlease reload/restart the server for changes to take effect.");
-            } catch (IOException e) {
-                plugin.getLogger().log(Level.SEVERE,"Error whilst checking for update: failed to open URL stream.");
-            }
 
         });
     }

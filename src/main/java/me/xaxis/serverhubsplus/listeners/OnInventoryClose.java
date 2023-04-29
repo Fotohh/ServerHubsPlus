@@ -3,23 +3,18 @@ package me.xaxis.serverhubsplus.listeners;
 import me.xaxis.serverhubsplus.ServerHubsPlus;
 import me.xaxis.serverhubsplus.managers.InvSeeManager;
 import me.xaxis.serverhubsplus.utils.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 public class OnInventoryClose extends Utils implements Listener {
 
 
-    private final ServerHubsPlus plugin;
-
     public OnInventoryClose(@NotNull ServerHubsPlus plugin) {
         super(plugin);
-        this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -32,19 +27,13 @@ public class OnInventoryClose extends Utils implements Listener {
 
         Inventory inventory = event.getInventory();
 
-        String title = event.getView().getTitle();
+        if(!InvSeeManager.isPlayerInList(player)) return;
 
-        Player target = Bukkit.getPlayer(title);
+        InvSeeManager manager = InvSeeManager.getManager(player);
 
-        if(!isTargetValid(target)) return;
+        manager.getTargetInventory().setContents(inventory.getContents());
 
-        if(target == null || !target.isOnline()) return;
-
-        if(!InvSeeManager.isPlayerInList(target)) return;
-
-        if (inventory.getType() != InventoryType.CHEST) return;
-
-        target.getInventory().setContents(inventory.getContents());
+        manager.delete(player);
 
     }
 }
