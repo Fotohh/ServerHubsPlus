@@ -12,11 +12,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class Heal implements CommandExecutor {
+public class Heal extends Utils implements CommandExecutor {
 
     private final ServerHubsPlus instance;
 
     public Heal(@NotNull ServerHubsPlus instance){
+        super(instance);
         this.instance = instance;
         instance.getCommand("heal").setExecutor(this);
     }
@@ -31,15 +32,22 @@ public class Heal implements CommandExecutor {
 
             if(args.length == 1){
 
-                if(isValid(Bukkit.getPlayer(args[0]), Perms.SHP_HEAL_OTHERS)){
+                if(isTargetValid(Bukkit.getPlayer(args[0]),player) && checkPermission(player, Perms.SHP_HEAL_OTHERS)){
 
                     Player other = Bukkit.getPlayer(args[0]);
 
-                    double maxHealth = other.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                    double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+
+                    if (other.getHealth() == maxHealth) {
+                        message(player, Lang.HEALTH_OTHER_MAX, other.getDisplayName());
+                        return false;
+                    }
 
                     other.setHealth(maxHealth);
+                    message(other, Lang.HEAL);
+                    message(player, Lang.HEAL_OTHER, other.getDisplayName());
 
-                    other.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +"&aYour health was reset!"));
+                    return true;
 
                 }
 
@@ -49,61 +57,28 @@ public class Heal implements CommandExecutor {
 
                     double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
 
+                    if(player.getHealth() == maxHealth) {
+                        message(player, Lang.HEALTH_MAX);
+                        return false;
+                    }
+
                     player.setHealth(maxHealth);
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&aSuccessfully reset your health!"));
+                    message(player, Lang.HEAL);
+
+                    return true;
 
                 }
 
             } else{
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&4Invalid Usage! /heal or /heal <player>"));
+                message(player, Lang.HEAL_INCORRECT_USAGE);
             }
 
 
         }else{
-
-            sender.sendMessage(Utils.chat(instance.getConfig().getString(Lang.PREFIX.toString(instance)+Lang.SENDER_NOT_PLAYER.toString(instance))));
-
+            message(sender, Lang.SENDER_NOT_PLAYER);
         }
-
-
         return true;
-    }
-
-    public boolean isValid(@NotNull Player player, @NotNull Perms perms){
-
-        if(!player.isOnline()){
-
-            player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+Lang.INVALID_PLAYER.toString(instance)));
-
-            return false;
-
-        }
-
-        if (!player.hasPermission(perms.ToString())) {
-
-            player.sendMessage(Lang.PREFIX.toString(instance)+Lang.NO_PERMISSION.toString(instance));
-
-            return false;
-
-        }
-
-        double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
-
-        if (player.getHealth() == maxHealth) {
-
-            if(perms.equals(Perms.SHP_HEAL)) {
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&4You are already at max health!"));
-            } else if (perms.equals(Perms.SHP_HEAL_OTHERS)) {
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + String.format("&6%s &4is already at max health!", player.getDisplayName())));
-            }
-
-            return false;
-
-        }
-
-        return true;
-
     }
 
 }

@@ -3,6 +3,7 @@ package me.xaxis.serverhubsplus.commands;
 import me.xaxis.serverhubsplus.Lang;
 import me.xaxis.serverhubsplus.Perms;
 import me.xaxis.serverhubsplus.ServerHubsPlus;
+import me.xaxis.serverhubsplus.file.LangConfig;
 import me.xaxis.serverhubsplus.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -14,11 +15,13 @@ import org.jetbrains.annotations.NotNull;
 public class Fly implements CommandExecutor {
 
     private final ServerHubsPlus instance;
+    private final LangConfig lang;
 
     public Fly(@NotNull ServerHubsPlus instance){
 
         this.instance = instance;
         instance.getCommand("fly").setExecutor(this);
+        this.lang = instance.getLangConfig();
 
     }
 
@@ -31,9 +34,9 @@ public class Fly implements CommandExecutor {
 
                 if(args.length == 0){
 
-                    if(!player.hasPermission(Perms.FLY.ToString())){
+                    if(!player.hasPermission(Perms.FLY.get())){
 
-                        player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +Lang.NO_PERMISSION));
+                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.NO_PERMISSION)));
 
                         return true;
 
@@ -45,7 +48,7 @@ public class Fly implements CommandExecutor {
 
                         player.setFlying(false);
 
-                        player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +"&4Flight mode was disabled!"));
+                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_DISABLED)));
 
                         return true;
 
@@ -53,15 +56,15 @@ public class Fly implements CommandExecutor {
 
                     player.setAllowFlight(true);
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +"&aFlight mode was enabled!"));
+                    player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_ENABLED)));
 
                     return true;
 
                 }else if(args.length == 1){
 
-                    if(!player.hasPermission(Perms.FLY_OTHERS.ToString())){
+                    if(!player.hasPermission(Perms.FLY_OTHERS.get())){
 
-                        player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +Lang.NO_PERMISSION));
+                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.NO_PERMISSION)));
 
                         return true;
 
@@ -71,7 +74,7 @@ public class Fly implements CommandExecutor {
 
                     if(target == null || !target.isOnline()){
 
-                        player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +Lang.INVALID_PLAYER.toString(instance)));
+                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.INVALID_PLAYER)));
 
                         return true;
 
@@ -79,28 +82,28 @@ public class Fly implements CommandExecutor {
 
                     if(target.getAllowFlight()){
 
-                        player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +"&4Disabled flight mode for " + target.getDisplayName() +"!"));
+                        player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_DISABLED_OTHER, target.getDisplayName())));
 
                         target.setAllowFlight(false);
 
                         target.setFlying(false);
 
-                        target.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +"&4Flight mode was disabled!"));
+                        target.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_DISABLED)));
 
                         return true;
                     }
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +"&aSuccessfully enabled flight mode for "+target.getDisplayName()+"!"));
+                    player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_ENABLED_OTHER, target.getDisplayName())));
 
                     target.setAllowFlight(true);
 
-                    target.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +"&aFlight mode was enabled!"));
+                    target.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.FLY_ENABLED)));
 
                     return true;
 
                 }else{
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +"&4Invalid Usage! /fly or /fly <player>"));
+                    player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) +lang.getString(Lang.FLY_INCORRECT_USAGE)));
 
                     return true;
 
@@ -108,7 +111,7 @@ public class Fly implements CommandExecutor {
 
         }else{
 
-            sender.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +Lang.SENDER_NOT_PLAYER.toString(instance)));
+            sender.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.SENDER_NOT_PLAYER)));
 
             return true;
 

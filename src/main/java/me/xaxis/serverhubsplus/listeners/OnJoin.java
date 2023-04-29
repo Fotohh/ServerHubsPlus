@@ -26,7 +26,7 @@ public class OnJoin implements Listener {
 
         Player player = e.getPlayer();
 
-        String message = Lang.CUSTOM_JOIN_MESSAGE.toString(instance);
+        String message = Lang.CUSTOM_JOIN_MESSAGE.get(instance);
 
         StringBuilder msg = new StringBuilder(message);
 
@@ -79,7 +79,7 @@ public class OnJoin implements Listener {
 
             Player other = e.getPlayer();
 
-            if(other.hasPermission(Perms.VANISH_SEE.ToString())) return;
+            if(other.hasPermission(Perms.VANISH_SEE.get())) return;
 
             for(Player player : VanishManager.getVanishList()){
 

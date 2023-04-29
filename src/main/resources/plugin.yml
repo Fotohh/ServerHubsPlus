@@ -32,4 +32,8 @@ commands:
     description: 'Your discord link'
   invsee:
     description: 'Look into another players inventory and remove items'
+  lockchat:
+    description: 'Lock the global chat, disallowing people without permission to speak.'
+  unlockchat:
+    description: 'Unlock the global chat.'
 

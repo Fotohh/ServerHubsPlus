@@ -25,10 +25,10 @@ public class Discord implements CommandExecutor {
 
             Player player = (Player) commandSender;
 
-            player.sendMessage(Utils.chat(Lang.DISCORD.toString(plugin)));
+            player.sendMessage(Utils.chat(plugin.getLangConfig().getString(Lang.DISCORD)));
 
         }else{
-            commandSender.sendMessage(Utils.chat(Lang.SENDER_NOT_PLAYER.toString(plugin)));
+            commandSender.sendMessage(Utils.chat(plugin.getLangConfig().getString(Lang.SENDER_NOT_PLAYER)));
         }
 
         return true;

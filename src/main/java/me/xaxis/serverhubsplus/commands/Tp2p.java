@@ -11,11 +11,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class Tp2p implements CommandExecutor {
+public class Tp2p extends Utils implements CommandExecutor {
 
     private final ServerHubsPlus instance;
 
-    public Tp2p(@NotNull ServerHubsPlus instance){
+    public Tp2p(@NotNull ServerHubsPlus instance) {
+        super(instance);
         this.instance = instance;
         instance.getCommand("tp2p").setExecutor(this);
     }
@@ -24,51 +25,26 @@ public class Tp2p implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
-        if(sender instanceof Player){
+        if (isValid(sender, Perms.TP2P)) {
 
             Player player = (Player) sender;
 
-            if(player.hasPermission(Perms.TP2P.toString())){
-
-                if(args.length != 1){
-
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&4Incorrect Usage! /tp2p <player>"));
-
-                    return true;
-
-                }
-
-                Player target = Bukkit.getPlayer(args[0]);
-
-                if(target == null || !target.isOnline()) {
-
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + Lang.INVALID_PLAYER.toString(instance)));
-
-                    return true;
-
-                }
-
-                player.teleport(target.getLocation());
-
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&aSuccessfully teleported to " + target.getDisplayName() +"!"));
-
-            }else{
-
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+Lang.NO_PERMISSION.toString(instance)));
-
+            if (args.length != 1) {
+                message(player, Lang.TP2P_INCORRECT_USAGE);
                 return true;
-
             }
 
-        } else {
+            Player target = Bukkit.getPlayer(args[0]);
 
-            sender.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+Lang.SENDER_NOT_PLAYER));
+            if (!isTargetValid(player, target)) return true;
+
+            player.teleport(target.getLocation());
+
+            message(player, Lang.TP2P_MESSAGE, target.getDisplayName());
 
             return true;
 
         }
-
         return true;
-
     }
 }

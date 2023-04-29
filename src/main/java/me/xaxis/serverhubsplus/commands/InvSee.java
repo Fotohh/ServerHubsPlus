@@ -3,6 +3,7 @@ package me.xaxis.serverhubsplus.commands;
 import me.xaxis.serverhubsplus.Lang;
 import me.xaxis.serverhubsplus.Perms;
 import me.xaxis.serverhubsplus.ServerHubsPlus;
+import me.xaxis.serverhubsplus.file.LangConfig;
 import me.xaxis.serverhubsplus.managers.InvSeeManager;
 import me.xaxis.serverhubsplus.utils.Utils;
 import org.bukkit.Bukkit;
@@ -18,9 +19,12 @@ public class InvSee implements CommandExecutor {
 
     private final ServerHubsPlus plugin;
 
+    private final LangConfig lang;
+
     public InvSee(@NotNull ServerHubsPlus plugin) {
         this.plugin = plugin;
         plugin.getCommand("invsee").setExecutor(this);
+        lang = plugin.getLangConfig();
     }
 
     @Override
@@ -30,8 +34,8 @@ public class InvSee implements CommandExecutor {
 
             Player player = (Player) sender;
 
-            if(!player.hasPermission(Perms.INVSEE.ToString())){
-                player.sendMessage(Utils.chat(Lang.NO_PERMISSION.toString(plugin)));
+            if(!player.hasPermission(Perms.INVSEE.get())){
+                player.sendMessage(Utils.chat(lang.getString(Lang.NO_PERMISSION)));
                 return true;
             }
 
@@ -41,19 +45,19 @@ public class InvSee implements CommandExecutor {
 
                 if (target == null || !target.isOnline()) {
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(plugin) + Lang.INVALID_PLAYER.toString(plugin)));
+                    player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.INVALID_PLAYER)));
                     return true;
                 }
 
                 openInventory(target, player);
 
             }else{
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(plugin) + Lang.NOT_ENOUGH_ARGS.toString(plugin)));
+                player.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.NOT_ENOUGH_ARGS)));
                 return true;
             }
 
         }else{
-            sender.sendMessage(Utils.chat(Lang.PREFIX.toString(plugin) + Lang.SENDER_NOT_PLAYER.toString(plugin)));
+            sender.sendMessage(Utils.chat(lang.getString(Lang.PREFIX) + lang.getString(Lang.SENDER_NOT_PLAYER)));
             return true;
         }
 
