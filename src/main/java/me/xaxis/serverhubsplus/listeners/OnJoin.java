@@ -26,7 +26,7 @@ public class OnJoin implements Listener {
 
         Player player = e.getPlayer();
 
-        String message = Lang.CUSTOM_JOIN_MESSAGE.get(instance);
+        String message = instance.getLangConfig().getString(Lang.CUSTOM_JOIN_MESSAGE, player.getDisplayName());
 
         StringBuilder msg = new StringBuilder(message);
 
