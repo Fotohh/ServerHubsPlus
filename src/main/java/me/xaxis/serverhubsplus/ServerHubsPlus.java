@@ -1,8 +1,10 @@
 package me.xaxis.serverhubsplus;
 
 import me.xaxis.serverhubsplus.commands.*;
-import me.xaxis.serverhubsplus.listeners.OnInventoryClick;
+import me.xaxis.serverhubsplus.file.LangConfig;
+import me.xaxis.serverhubsplus.listeners.OnInventoryClose;
 import me.xaxis.serverhubsplus.listeners.OnJoin;
+import me.xaxis.serverhubsplus.managers.LockChatManager;
 import me.xaxis.serverhubsplus.utils.UpdateChecker;
 import me.xaxis.serverhubsplus.utils.Utils;
 import org.bstats.bukkit.Metrics;
@@ -11,6 +13,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class ServerHubsPlus extends JavaPlugin{
+
+    private LockChatManager lockChatManager;
+    private LangConfig langConfig;
 
     @Override
     public void onEnable() {
@@ -38,12 +43,24 @@ public class ServerHubsPlus extends JavaPlugin{
         new GodMode(this);
         new Discord(this);
         new InvSee(this);
-        new OnInventoryClick(this);
+        new OnInventoryClose(this);
+        new LockChat(this);
+        new UnlockChat(this);
+        lockChatManager = new LockChatManager(this);
+        langConfig = new LangConfig(this, "Lang.yml");
 
         if(Options.Vanish.toBoolean(this)) {
             new Vanish(this);
         }
 
+    }
+
+    public LockChatManager getLockChatManager() {
+        return lockChatManager;
+    }
+
+    public LangConfig getLangConfig() {
+        return langConfig;
     }
 
     @Override

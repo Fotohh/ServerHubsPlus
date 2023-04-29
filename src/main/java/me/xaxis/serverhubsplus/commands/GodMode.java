@@ -3,6 +3,7 @@ package me.xaxis.serverhubsplus.commands;
 import me.xaxis.serverhubsplus.Lang;
 import me.xaxis.serverhubsplus.Perms;
 import me.xaxis.serverhubsplus.ServerHubsPlus;
+import me.xaxis.serverhubsplus.file.LangConfig;
 import me.xaxis.serverhubsplus.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -11,13 +12,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class GodMode implements CommandExecutor {
-
-    private final ServerHubsPlus instance;
+public class GodMode extends Utils implements CommandExecutor{
 
     public GodMode(@NotNull ServerHubsPlus instance){
+        super(instance);
 
-        this.instance = instance;
         instance.getCommand("godmode").setExecutor(this);
     }
 
@@ -30,9 +29,9 @@ public class GodMode implements CommandExecutor {
 
             if(args.length == 0) {
 
-                if (!player.hasPermission(Perms.FLY.ToString())) {
+                if (!player.hasPermission(Perms.FLY.get())) {
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + Lang.NO_PERMISSION.toString(instance)));
+                    message(player, Lang.NO_PERMISSION);
 
                     return true;
 
@@ -42,13 +41,15 @@ public class GodMode implements CommandExecutor {
 
                     player.setInvulnerable(false);
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&4You are now vulnerable!"));
+                    message(player, Lang.VULNERABLE);
+                    //"&4You are now vulnerable!"
 
                 }else {
 
                     player.setInvulnerable(true);
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&4You are now invulnerable!"));
+                    message(player, Lang.INVULNERABLE);
+                    //"&4You are now invulnerable!"
 
                 }
 
@@ -56,9 +57,9 @@ public class GodMode implements CommandExecutor {
 
             }else if(args.length == 1){
 
-                if (!player.hasPermission(Perms.FLY_OTHERS.ToString())) {
+                if (!player.hasPermission(Perms.FLY_OTHERS.get())) {
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + Lang.NO_PERMISSION.toString(instance)));
+                    message(player, Lang.NO_PERMISSION);
 
                     return true;
 
@@ -68,7 +69,7 @@ public class GodMode implements CommandExecutor {
 
                 if(target == null || !target.isOnline()){
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +Lang.INVALID_PLAYER.toString(instance)));
+                    message(player, Lang.INVALID_PLAYER);
 
                     return true;
 
@@ -78,17 +79,19 @@ public class GodMode implements CommandExecutor {
 
                     target.setInvulnerable(false);
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&4Set " + player.getDisplayName() + " to vulnerable!"));
+                    message(player, Lang.OTHER_VULNERABLE, target.getDisplayName());
+                    //"&4Set " + player.getDisplayName() + " to vulnerable!"
 
-                    target.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&4You are now vulnerable!"));
+                    message(target, Lang.VULNERABLE);
+                    //"&4You are now vulnerable!"
 
                 }else{
 
                     target.setInvulnerable(true);
 
-                    player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&4Set " + player.getDisplayName() + " to invulnerable!"));
+                    message(player, Lang.OTHER_INVULNERABLE, target.getDisplayName());
 
-                    target.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&4You are now invulnerable!"));
+                    message(target, Lang.INVULNERABLE);
 
                 }
 
@@ -98,7 +101,7 @@ public class GodMode implements CommandExecutor {
 
         } else{
 
-            sender.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) +Lang.SENDER_NOT_PLAYER.toString(instance)));
+            message(sender, Lang.SENDER_NOT_PLAYER);
 
             return true;
 

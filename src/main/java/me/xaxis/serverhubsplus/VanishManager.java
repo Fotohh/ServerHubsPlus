@@ -47,7 +47,7 @@ public class VanishManager {
     public void showPlayer(){
         for(Player others : Bukkit.getServer().getOnlinePlayers()){
 
-            if(others.hasPermission(Perms.VANISH_SEE.ToString())) return;
+            if(others.hasPermission(Perms.VANISH_SEE.get())) return;
 
             others.showPlayer(instance, player);
         }
@@ -60,7 +60,7 @@ public class VanishManager {
     public void hidePlayer(){
         for(Player others : Bukkit.getServer().getOnlinePlayers()){
 
-            if(others.hasPermission(Perms.VANISH_SEE.ToString())) return;
+            if(others.hasPermission(Perms.VANISH_SEE.get())) return;
 
             others.hidePlayer(instance, player);
         }

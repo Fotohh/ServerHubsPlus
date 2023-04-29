@@ -17,13 +17,13 @@ public enum Perms {
     VANISH("ServerHubsPlus.commands.vanish"),
     VANISH_OTHERS("ServerHubsPlus.commands.vanish.others"),
     VANISH_SEE("ServerHubsPlus.commands.vanish.see"),
-    INVSEE("ServerHubsPlus.commands.invsee")
+    INVSEE("ServerHubsPlus.commands.invsee"),
+    CHATLOCK_BYPASS("ServerHubsPlus.commands.chatlock_bypass"),
+    LOCK_CHAT("ServerHubsPls.commands.lockchat"),
     ;
 
-    public String ToString(){
-
+    public String get(){
         return permission;
-
     }
 
     private final String permission;

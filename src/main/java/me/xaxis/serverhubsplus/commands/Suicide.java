@@ -11,11 +11,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class Suicide implements CommandExecutor {
+public class Suicide extends Utils implements CommandExecutor {
 
     private final ServerHubsPlus instance;
 
     public Suicide(@NotNull ServerHubsPlus instance){
+        super(instance);
 
         this.instance = instance;
         instance.getCommand("suicide").setExecutor(this);
@@ -25,41 +26,18 @@ public class Suicide implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
-        if(sender instanceof Player){
+        if(isValid(sender, Perms.SUICIDE)) {
 
             Player player = (Player) sender;
 
-            if(args.length != 0){
-
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&4Incorrect Usage! /suicide"));
-
+            if (args.length != 0) {
+                message(player, Lang.SUICIDE_MESSAGE);
                 return true;
-
             }
 
-            if(player.hasPermission(Perms.SUICIDE.toString())){
-
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&4You will die in 3 seconds..."));
-
-                Bukkit.getScheduler().runTaskLater(instance, ()-> player.setHealth(0), 60L);
-
-            } else{
-
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+Lang.NO_PERMISSION.toString(instance)));
-
-                return true;
-
-            }
-
-
-        } else{
-
-            sender.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+Lang.SENDER_NOT_PLAYER.toString(instance)));
-
-            return true;
-
+            message(player, Lang.SUICIDE_INCORRECT_USAGE);
+            Bukkit.getScheduler().runTaskLater(instance, () -> player.setHealth(0), 60L);
         }
-
         return true;
     }
 }

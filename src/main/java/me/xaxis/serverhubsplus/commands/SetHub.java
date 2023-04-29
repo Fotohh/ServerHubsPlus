@@ -12,11 +12,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class SetHub implements CommandExecutor {
+public class SetHub extends Utils implements CommandExecutor {
 
     private final ServerHubsPlus instance;
 
     public SetHub(ServerHubsPlus instance){
+        super(instance);
         this.instance = instance;
         instance.getCommand("sethub").setExecutor(this);
     }
@@ -24,17 +25,9 @@ public class SetHub implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
-        if(sender instanceof Player){
+        if(isValid(sender, Perms.SET_HUB)){
 
             Player player = (Player) sender;
-
-            if (!player.hasPermission(Perms.SET_HUB.ToString())) {
-
-                player.hasPermission(Utils.chat(Lang.PREFIX.toString(instance) + Lang.NO_PERMISSION.toString(instance)));
-
-                return true;
-
-            }
 
             if(args.length == 0) {
 
@@ -42,7 +35,8 @@ public class SetHub implements CommandExecutor {
 
                 instance.saveConfig();
 
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&aSuccessfully set hub location!"));
+                message(player, Lang.SET_HUB_LOCATION);
+                //"&aSuccessfully set hub location!"
 
             } else if(args.length == 3){
 
@@ -60,20 +54,14 @@ public class SetHub implements CommandExecutor {
 
                 instance.saveConfig();
 
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&aSuccessfully set hub location!"));
+                message(player, Lang.SET_HUB_LOCATION);
 
             } else {
 
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+"&4Incorrect Usage! /sethub or /sethub x y z"));
+                message(player, Lang.SET_HUB_INCORRECT_USAGE);
                 return true;
 
             }
-
-        }else{
-
-            sender.sendMessage(Utils.chat(Lang.PREFIX.toString(instance)+Lang.SENDER_NOT_PLAYER.toString(instance)));
-
-            return true;
 
         }
 

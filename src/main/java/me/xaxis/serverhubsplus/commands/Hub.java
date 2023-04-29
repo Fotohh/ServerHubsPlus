@@ -11,11 +11,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class Hub implements CommandExecutor {
+public class Hub extends Utils implements CommandExecutor {
 
     private final ServerHubsPlus instance;
 
     public Hub(ServerHubsPlus instance){
+        super(instance);
         this.instance = instance;
         instance.getCommand("hub").setExecutor(this);
     }
@@ -23,7 +24,7 @@ public class Hub implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
-        if(sender instanceof Player){
+        if(isValid(sender)){
 
             Player player = (Player) sender;
 
@@ -31,25 +32,20 @@ public class Hub implements CommandExecutor {
 
             if(location == null){
 
-                player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&4Huh... that's odd... no hub location was set!"));
-
+                message(player, Lang.NO_HUB_LOCATION);
                 return true;
 
             }
 
-            player.teleport(location);
-
             if(location.getWorld() == null) return true;
+
+            player.teleport(location);
 
             location.getWorld().spawnEntity(location, EntityType.FIREWORK);
 
-            player.sendMessage(Utils.chat(Lang.PREFIX.toString(instance) + "&aSuccessfully teleported to hub!"));
+            message(player, Lang.TELEPORTED_TO_HUB);
 
-
-        }else{
-            sender.sendMessage(Utils.chat(Lang.SENDER_NOT_PLAYER.toString(instance)));
         }
-
         return true;
     }
 }
