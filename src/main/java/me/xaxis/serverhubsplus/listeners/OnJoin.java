@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class OnJoin implements Listener {
 
+
     private final ServerHubsPlus instance;
 
     public OnJoin(@NotNull ServerHubsPlus instance) {
@@ -20,41 +21,15 @@ public class OnJoin implements Listener {
     }
 
     @EventHandler
-    public void customJoinMsg(PlayerJoinEvent e){
+    public void customJoinMsg(PlayerJoinEvent e) {
 
-        if(!Options.custom_join_messages.toBoolean(instance)) return;
+        if (!Options.custom_join_messages.toBoolean(instance)) return;
 
         Player player = e.getPlayer();
 
         String message = instance.getLangConfig().getString(Lang.CUSTOM_JOIN_MESSAGE, player.getDisplayName());
 
-        StringBuilder msg = new StringBuilder(message);
-
-        int len = message.toCharArray().length;
-
-        for(int i = 0; i < len; i++){
-
-            char c = message.charAt(i);
-
-            if(c == '%' && message.charAt(i + 1) == 'p'){
-
-                msg.deleteCharAt(i + 1);
-
-                msg.deleteCharAt(i);
-
-                msg.insert(i, player.getDisplayName());
-
-                message = msg.toString();
-
-                System.out.println(message);
-
-                e.setJoinMessage(Utils.chat(message));
-
-                return;
-
-            }
-
-        }
+        e.setJoinMessage(message);
 
     }
 

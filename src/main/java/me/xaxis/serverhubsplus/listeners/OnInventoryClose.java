@@ -2,6 +2,7 @@ package me.xaxis.serverhubsplus.listeners;
 
 import me.xaxis.serverhubsplus.ServerHubsPlus;
 import me.xaxis.serverhubsplus.managers.InvSeeManager;
+import me.xaxis.serverhubsplus.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,11 +12,13 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-public class OnInventoryClose implements Listener {
+public class OnInventoryClose extends Utils implements Listener {
+    
 
     private final ServerHubsPlus plugin;
 
     public OnInventoryClose(@NotNull ServerHubsPlus plugin) {
+        super(plugin);
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -32,6 +35,8 @@ public class OnInventoryClose implements Listener {
         String title = event.getView().getTitle();
 
         Player target = Bukkit.getPlayer(title);
+
+        if(!isTargetValid(target)) return;
 
         if(target == null || !target.isOnline()) return;
 

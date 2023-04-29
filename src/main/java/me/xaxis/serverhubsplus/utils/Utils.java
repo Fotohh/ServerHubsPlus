@@ -105,18 +105,23 @@ public class Utils {
      * @param target the target to check
      * @return true if valid, false if not
      */
-    public boolean isTargetValid(Player player ,Player target){
+    public boolean isTargetValid(Player player,Player target){
 
         if(target == null || !target.isOnline()){
-
             message(player, Lang.INVALID_PLAYER);
-
             return false;
-
         }
-
         return true;
+    }
 
+    /**
+     * Same thing as {@link #isTargetValid(Player, Player)} except for the fact that
+     * it does not send a message.
+     * @param target the target to check
+     * @return true if valid, false if not
+     */
+    public boolean isTargetValid(Player target){
+        return target != null && target.isOnline();
     }
 
     /**
