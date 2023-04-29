@@ -28,22 +28,18 @@ public class Vanish extends Utils implements CommandExecutor {
 
             if(args.length == 0) {
 
-                if (player.hasPermission(Perms.VANISH.get())) {
+                if (checkPermission(player, Perms.VANISH)) {
 
                     vanishPlayer(player);
 
                     return true;
 
                 }
-
-                player.sendMessage(Utils.chat(Lang.NO_PERMISSION.get(instance)));
-
                 return true;
 
             }else if(args.length == 1) {
 
                 if (checkPermission(player, Perms.VANISH_OTHERS)) {
-
 
                     Player target = Bukkit.getPlayer(args[0]);
 
@@ -51,14 +47,11 @@ public class Vanish extends Utils implements CommandExecutor {
 
                     vanishPlayer(target);
 
-                    message(player, );
-                    //successfully vanished %s
+                    message(player, Lang.VANISHED_OTHER);
 
                     return true;
 
                 }
-
-                player.sendMessage(Utils.chat(Lang.NO_PERMISSION.get(instance)));
 
                 return true;
 

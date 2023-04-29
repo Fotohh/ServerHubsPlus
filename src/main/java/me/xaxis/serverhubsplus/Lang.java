@@ -42,7 +42,7 @@ public enum Lang {
     TPHERE_INCORRECT_USAGE("Lang.CommandMessages.tphere_incorrect_usage", "&4Incorrect Usage! /tphere <player>"),
     TPHERE_MESSAGE("Lang.PlayerMessages.tphere_message", "&aSuccessfully teleported %s to your location!"),
     VANISH_INCORRECT_USAGE("Lang.CommandMessages.vanish_incorrect_usage", "&4Invalid Usage! /vanish or /vanish <player>"),
-    VANISHED_OTHER("Lang.PlayerMessages.vanished_other", "")
+    VANISHED_OTHER("Lang.PlayerMessages.vanished_other", "&aSuccessfully vanished %s!")
     ;
 
     public String getDefaultValue(){
